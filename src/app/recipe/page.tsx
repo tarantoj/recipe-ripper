@@ -1,3 +1,4 @@
+import { Badge } from "@/components/ui/badge";
 import parse from "node-html-parser";
 import type { Graph, Thing, Recipe } from "schema-dts";
 
@@ -42,20 +43,28 @@ const Recipe = async ({
     );
 
   return (
-    <article>
-      <header>
-        <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
+    <div className="max-w-4xl mx-auto p-6">
+      {/* Recipe Header */}
+      <div className="mb-4">
+        <h1 className="text-3xl font-bold mb-2">
           {unescape(recipe?.name?.toString() ?? "")}
         </h1>
-        <small className="text-sm font-medium leading-none">
-          {unescape(recipe?.description?.toString() ?? "")}
-        </small>
-      </header>
-      <section>
-        <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
-          Ingredients
-        </h2>
-        <ul className="my-6 ml-6 list-disc [&>li]:mt-2">
+        <div className="flex gap-4">
+          {recipe?.recipeYield && (
+            <Badge variant="secondary">
+              {recipe?.recipeYield?.toString() ?? ""} servings
+            </Badge>
+          )}
+          {recipe?.cookTime && typeof recipe.cookTime === "string" && (
+            <Badge variant="secondary">{recipe.cookTime}</Badge>
+          )}
+        </div>
+      </div>
+
+      {/* Ingredients Section */}
+      <div className="p-6 rounded-lg shadow">
+        <h2 className="text-xl font-semibold mb-4">Ingredients</h2>
+        <ul className="list-disc pl-6 space-y-2">
           {(Array.isArray(recipe?.recipeIngredient)
             ? recipe.recipeIngredient
             : []
@@ -64,12 +73,12 @@ const Recipe = async ({
               typeof x === "string" && <li key={index}>{unescape(x)}</li>,
           )}
         </ul>
-      </section>
-      <section>
-        <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
-          Instructions
-        </h2>
-        <ol className="my-6 ml-6 list-decimal [&>li]:mt-2">
+      </div>
+
+      {/* Instructions Section */}
+      <div className="p-6 rounded-lg shadow-sm">
+        <h2 className="text-xl font-semibold mb-4">Instructions</h2>
+        <ol className="list-decimal pl-6 space-y-4">
           {(Array.isArray(recipe?.recipeInstructions)
             ? recipe.recipeInstructions
             : []
@@ -81,8 +90,8 @@ const Recipe = async ({
             ) : null,
           )}
         </ol>
-      </section>
-    </article>
+      </div>
+    </div>
   );
 };
 
