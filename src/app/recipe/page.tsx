@@ -3,6 +3,15 @@ import type { Graph, Thing, Recipe } from "schema-dts";
 
 export const runtime = "edge";
 
+const unescape = (val: string) =>
+  val
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "\'")
+    .replace(/&amp;/g, "&")
+    .replace(/&nbsp;/g, " ");
+
 const Recipe = async ({
   searchParams,
 }: {
@@ -31,10 +40,10 @@ const Recipe = async ({
     <article>
       <header>
         <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
-          {recipe?.name?.toString() ?? ""}
+          {unescape(recipe?.name?.toString() ?? "")}
         </h1>
         <small className="text-sm font-medium leading-none">
-          {recipe?.description?.toString() ?? ""}
+          {unescape(recipe?.description?.toString() ?? "")}
         </small>
       </header>
       <section>
@@ -46,7 +55,8 @@ const Recipe = async ({
             ? recipe.recipeIngredient
             : []
           ).map(
-            (x, index) => typeof x === "string" && <li key={index}>{x}</li>,
+            (x, index) =>
+              typeof x === "string" && <li key={index}>{unescape(x)}</li>,
           )}
         </ul>
       </section>
@@ -62,7 +72,7 @@ const Recipe = async ({
             typeof x === "object" &&
             "@type" in x &&
             x["@type"] === "HowToStep" ? (
-              <li key={index}>{x.text}</li>
+              <li key={index}>{unescape(x.text)}</li>
             ) : null,
           )}
         </ol>
