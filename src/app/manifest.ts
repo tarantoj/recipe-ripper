@@ -2,9 +2,9 @@ import { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Next.js PWA",
-    short_name: "NextPWA",
-    description: "A Progressive Web App built with Next.js",
+    name: "Recipe Ripper",
+    short_name: "RR",
+    description: "Terser recipe viewer",
     start_url: "/",
     display: "standalone",
     background_color: "#ffffff",
