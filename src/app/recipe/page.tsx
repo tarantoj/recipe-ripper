@@ -52,7 +52,9 @@ const Recipe = async ({
         <div className="flex gap-4">
           {recipe?.recipeYield && (
             <Badge variant="secondary">
-              {recipe?.recipeYield?.toString() ?? ""} servings
+              {Array.isArray(recipe?.recipeYield)
+                ? recipe.recipeYield[0]
+                : recipe.recipeYield}
             </Badge>
           )}
           {recipe?.cookTime && typeof recipe.cookTime === "string" && (
