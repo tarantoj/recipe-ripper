@@ -59,7 +59,7 @@ export default {
       fontFamily: {
         serif: ["var(--font-noto-serif)"],
         sans: ["var(--font-inter)"],
-        mono: ["var(--font-roboto-mono)"],
+        mono: ["var(--font-source-code-pro)"],
       },
     },
   },

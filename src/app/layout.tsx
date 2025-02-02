@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
-import { Inter, Noto_Serif, Roboto_Mono } from "next/font/google";
+import {
+  Inter,
+  Noto_Serif,
+  Roboto_Mono,
+  Source_Code_Pro,
+} from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import { ModeToggle as ThemeSwitcher } from "@/components/theme-mode-toggle";
@@ -13,14 +18,14 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
-const roboto_mono = Roboto_Mono({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-roboto-mono",
-});
-
 const notoSerif = Noto_Serif({
   variable: "--font-noto-serif",
+  display: "swap",
+  subsets: ["latin"],
+});
+
+const sourceCodePro = Source_Code_Pro({
+  variable: "--font-source-code-pro",
   display: "swap",
   subsets: ["latin"],
 });
@@ -42,7 +47,7 @@ export default function RootLayout({
           "relative flex flex-col min-h-svh bg-background",
           notoSerif.variable,
           inter.variable,
-          roboto_mono.variable,
+          sourceCodePro.variable,
           "font-sans",
         )}
       >
