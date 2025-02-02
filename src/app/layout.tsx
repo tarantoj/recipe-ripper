@@ -1,10 +1,5 @@
 import type { Metadata } from "next";
-import {
-  Inter,
-  Noto_Serif,
-  Roboto_Mono,
-  Source_Code_Pro,
-} from "next/font/google";
+import { Inter, Noto_Serif, Source_Code_Pro } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import { ModeToggle as ThemeSwitcher } from "@/components/theme-mode-toggle";
@@ -75,7 +70,7 @@ export default function RootLayout({
                 </div>
               </div>
             </header>
-            <main className="flex flex-1 flex-col container">{children}</main>
+            <main>{children}</main>
             <footer></footer>
           </div>
         </ThemeProvider>
