@@ -28,7 +28,7 @@
             ]
         },
         "types": [
-            "@cloudflare/workers-types/2024-04-03"
+            "@cloudflare/workers-types/experimental"
         ]
     },
     "include": [
