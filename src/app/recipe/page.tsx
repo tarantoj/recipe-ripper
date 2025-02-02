@@ -1,14 +1,14 @@
 import parse from "node-html-parser";
 import type { Graph, Thing, Recipe } from "schema-dts";
 
-const RecipInstructions = ({
-  recipeInstructions,
-}: {
-  recipeInstructions: Recipe["recipeInstructions"];
-}) => {
-  if (Array.isArray(recipeInstructions) && recipeInstructions) {
-  }
-};
+// const RecipInstructions = ({
+//   recipeInstructions,
+// }: {
+//   recipeInstructions: Recipe["recipeInstructions"];
+// }) => {
+//   if (Array.isArray(recipeInstructions) && recipeInstructions) {
+//   }
+// };
 
 const Recipe = async ({
   searchParams,
