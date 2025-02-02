@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Noto_Serif, Roboto_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import { ModeToggle as ThemeSwitcher } from "@/components/theme-mode-toggle";
@@ -7,13 +7,21 @@ import { UtensilsCrossed } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
   subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const roboto_mono = Roboto_Mono({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-roboto-mono",
+});
+
+const notoSerif = Noto_Serif({
+  variable: "--font-noto-serif",
+  display: "swap",
   subsets: ["latin"],
 });
 
@@ -32,8 +40,10 @@ export default function RootLayout({
       <body
         className={cn(
           "relative flex flex-col min-h-svh bg-background",
-          geistSans.variable,
-          geistMono.variable,
+          notoSerif.variable,
+          inter.variable,
+          roboto_mono.variable,
+          "font-sans",
         )}
       >
         <ThemeProvider
