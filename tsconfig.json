@@ -28,7 +28,7 @@
             ]
         },
         "types": [
-            "@cloudflare/workers-types/2024-11-11"
+            "./.wrangler/types/runtime"
         ]
     },
     "include": [
