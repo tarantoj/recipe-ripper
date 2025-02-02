@@ -17,6 +17,10 @@ export default function manifest(): MetadataRoute.Manifest {
         purpose: "any",
       },
     ],
-    share_target: { action: "/recipe", method: "GET", params: { url: "url" } },
+    share_target: {
+      action: "/recipe",
+      method: "GET",
+      params: { url: "url", text: "text", title: "title" },
+    },
   };
 }

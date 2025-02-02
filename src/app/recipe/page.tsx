@@ -17,11 +17,16 @@ const Recipe = async ({
 }: {
   searchParams: Promise<{
     url: string;
+    text: string;
+    title: string;
   }>;
 }) => {
-  const { url } = await searchParams;
+  const { url, text, title } = await searchParams;
+  console.log({ url, text, title });
 
-  const res = await fetch(url);
+  const test = url ?? text ?? title;
+
+  const res = await fetch(test);
   const html = await res.text();
 
   const root = parse(html);
