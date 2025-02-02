@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
-import { ModeToggle } from "@/components/theme-mode-toggle";
+import { ModeToggle as ThemeSwitcher } from "@/components/theme-mode-toggle";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`min-h-svh bg-background ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ThemeProvider
           attribute="class"
@@ -35,8 +35,21 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <ModeToggle />
-          {children}
+          <div data-wrapper="" className="border-grid flex flex-1 flex-col">
+            <header className="border-grid sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+              <div className="container-wrapper">
+                <div className="container flex h-14 items-center">
+                  <div className="flex flex-1 items-center justify-between gap-2 md:justify-end">
+                    <nav className="flex items-center gap-0.5">
+                      <ThemeSwitcher />
+                    </nav>
+                  </div>
+                </div>
+              </div>
+            </header>
+            <main className="flex flex-1 flex-col container">{children}</main>
+            <footer></footer>
+          </div>
         </ThemeProvider>
       </body>
     </html>
