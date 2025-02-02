@@ -70,7 +70,9 @@ export default function RootLayout({
                 </div>
               </div>
             </header>
-            <main>{children}</main>
+            <main className="min-[1800px]:max-w-[1536px] min-[1800px]:border-x border-border/30 dark:border-border mx-auto w-full">
+              {children}
+            </main>
             <footer></footer>
           </div>
         </ThemeProvider>
