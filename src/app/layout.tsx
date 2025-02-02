@@ -5,6 +5,7 @@ import { ThemeProvider } from "next-themes";
 import { ModeToggle as ThemeSwitcher } from "@/components/theme-mode-toggle";
 import { UtensilsCrossed } from "lucide-react";
 import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,7 +30,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`relative flex flex-col min-h-svh bg-background ${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={cn(
+          "relative flex flex-col min-h-svh bg-background",
+          geistSans.variable,
+          geistMono.variable,
+        )}
       >
         <ThemeProvider
           attribute="class"
