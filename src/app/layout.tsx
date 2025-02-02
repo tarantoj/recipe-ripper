@@ -48,7 +48,7 @@ export default function RootLayout({
                 <div className="px-4 xl:px-6 2xl:px-4 mx-auto max-w-[1536px] flex h-14 items-center">
                   <Link href="/" className="mr-4 flex items-center gap-2 ">
                     <UtensilsCrossed />{" "}
-                    <span className="hidden font-bold sm:inline-block">
+                    <span className="font-bold inline-block">
                       Recipe Ripper
                     </span>
                   </Link>
