@@ -52,7 +52,7 @@ export default function RootLayout({
                       Recipe Ripper
                     </span>
                   </Link>
-                  <div className="flex flex-1 items-center justify-between gap-2 sm:justify-end">
+                  <div className="flex flex-1 items-center gap-2 justify-end">
                     <nav className="flex items-center gap-0.5">
                       <ThemeSwitcher />
                     </nav>
