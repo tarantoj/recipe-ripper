@@ -10,6 +10,8 @@ import type { Graph, Thing, Recipe } from "schema-dts";
 //   }
 // };
 
+export const runtime = "edge";
+
 const Recipe = async ({
   searchParams,
 }: {
