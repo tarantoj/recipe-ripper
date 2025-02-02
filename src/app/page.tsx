@@ -16,6 +16,7 @@ export default function Home() {
               type="url"
               id="url"
               name="url"
+              required
               placeholder="https://www.recipetineats.com/dal-indian-lentil-curry/"
             />
           </div>
