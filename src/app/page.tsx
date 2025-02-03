@@ -3,7 +3,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Form from "next/form";
 
-export const runtime = "edge";
 
 export default function Home() {
   return (

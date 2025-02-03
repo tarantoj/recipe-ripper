@@ -1,12 +1,22 @@
 {
-  "name": "recipe-ripper",
-  "compatibility_date": "2025-02-01",
-  "compatibility_flags": ["nodejs_compat"],
-  "pages_build_output_dir": ".vercel/output/static",
-  "kv_namespaces": [
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "recipe-ripper-workers",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2024-09-26",
+  "compatibility_flags": [
+      "nodejs_compat"
+  ],
+  "minify": true,
+  "assets": {
+      "binding": "ASSETS",
+      "directory": ".open-next/assets"
+  },
+  "observability": {
+      "enabled": true
+  },   "kv_namespaces": [
     {
-      "binding": "__NEXT_ON_PAGES__KV_SUSPENSE_CACHE",
+      "binding": "NEXT_CACHE_WORKERS_KV",
       "id": "8fd1fe16b8084edfafc614c092f0165a"
-    }
-  ]
+    }]
+
 }
