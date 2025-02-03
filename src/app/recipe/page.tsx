@@ -2,7 +2,6 @@ import { Badge } from "@/components/ui/badge";
 import parse from "node-html-parser";
 import type { Graph, Thing, Recipe } from "schema-dts";
 
-export const runtime = "edge";
 
 const unescape = (val: string) =>
   val

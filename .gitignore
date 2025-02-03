@@ -48,3 +48,10 @@ devenv.local.nix
 
 # pre-commit
 .pre-commit-config.yaml
+
+# OpenNext
+/.open-next
+
+# wrangler files
+.wrangler
+.dev.vars
