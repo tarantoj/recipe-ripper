@@ -27,7 +27,7 @@ const Recipe = async ({
 
   const test = url ?? text ?? title;
 
-  const res = await fetch(test, { cache: "force-cache" });
+  const res = await fetch(test);
   const html = await res.text();
 
   const root = parse(html);
