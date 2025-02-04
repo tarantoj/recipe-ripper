@@ -95,6 +95,10 @@ const Recipe = async ({
           )}
         </ol>
       </div>
+
+      <pre>
+        <code>{JSON.stringify(recipe, undefined, 2)}</code>
+      </pre>
     </div>
   );
 };
