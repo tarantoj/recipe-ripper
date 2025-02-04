@@ -89,6 +89,8 @@ const Recipe = async ({
             "@type" in x &&
             x["@type"] === "HowToStep" ? (
               <li key={index}>{unescape(x.text)}</li>
+            ) : typeof x === "string" ? (
+              <li key={index}>{unescape(x)}</li>
             ) : null,
           )}
         </ol>
