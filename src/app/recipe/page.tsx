@@ -64,7 +64,7 @@ const Recipe = async ({
       </div>
 
       {/* Ingredients Section */}
-      <div className="p-6 rounded-lg shadow">
+      <div className="p-6 rounded-lg shadow-sm">
         <h2 className="text-xl font-semibold mb-4">Ingredients</h2>
         <ul className="list-disc pl-6 space-y-2">
           {(Array.isArray(recipe?.recipeIngredient)
@@ -78,7 +78,7 @@ const Recipe = async ({
       </div>
 
       {/* Instructions Section */}
-      <div className="p-6 rounded-lg shadow-sm">
+      <div className="p-6 rounded-lg shadow-xs">
         <h2 className="text-xl font-semibold mb-4">Instructions</h2>
         <ol className="list-decimal pl-6 space-y-4">
           {(Array.isArray(recipe?.recipeInstructions)
