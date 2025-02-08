@@ -53,7 +53,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <div data-wrapper="" className="border-grid flex flex-1 flex-col">
-            <header className="border-grid sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+            <header className="border-grid sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur-sm supports-backdrop-filter:bg-background/60">
               <div className="min-[1800px]:max-w-[1536px] min-[1800px]:border-x border-border/30 dark:border-border mx-auto w-full">
                 <div className="px-4 xl:px-6 2xl:px-4 mx-auto max-w-[1536px] flex h-14 items-center">
                   <Link href="/" className="mr-4 flex items-center gap-2 ">
