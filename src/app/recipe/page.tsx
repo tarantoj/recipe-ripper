@@ -1,17 +1,13 @@
+import { RecipeIngredients } from "@/components/recipe-ingredients";
 import { Badge } from "@/components/ui/badge";
-import parse from "node-html-parser";
-import type { Graph, Thing, Recipe } from "schema-dts";
+import { fetchRecipe } from "@/lib/fetch-recipe";
+import { notFound } from "next/navigation";
+import type { Recipe } from "schema-dts";
+import { Temporal } from "temporal-polyfill";
+import { unescape } from "@/lib/unescape";
+import { requestCache } from "@/lib/request-cache";
 
 export const runtime = "edge";
-
-const unescape = (val: string) =>
-  val
-    .replace(/&lt;/g, "<")
-    .replace(/&gt;/g, ">")
-    .replace(/&quot;/g, '"')
-    .replace(/&#39;/g, "\'")
-    .replace(/&amp;/g, "&")
-    .replace(/&nbsp;/g, " ");
 
 const Recipe = async ({
   searchParams,
@@ -23,24 +19,14 @@ const Recipe = async ({
   }>;
 }) => {
   const { url, text, title } = await searchParams;
-  console.log({ url, text, title });
 
-  const test = url ?? text ?? title;
+  if (!url && !text && !title) return notFound();
 
-  const res = await fetch(test);
-  const html = await res.text();
+  const getRecipe = (key: string) => requestCache(() => fetchRecipe(key), key);
 
-  const root = parse(html);
-  const jsonLd = root.querySelectorAll("script[type='application/ld+json']");
+  const recipe = await getRecipe(url ?? text ?? title);
 
-  const recipe = jsonLd
-    .map(({ rawText }) => JSON.parse(rawText) as Thing | Graph)
-    .flatMap((x) =>
-      typeof x === "object" && "@graph" in x ? x["@graph"] : [x],
-    )
-    .find(
-      (x) => typeof x === "object" && "@type" in x && x["@type"] === "Recipe",
-    );
+  if (!recipe) return notFound();
 
   return (
     <div className="max-w-4xl mx-auto p-6">
@@ -58,24 +44,17 @@ const Recipe = async ({
             </Badge>
           )}
           {recipe?.cookTime && typeof recipe.cookTime === "string" && (
-            <Badge variant="secondary">{recipe.cookTime}</Badge>
+            <Badge variant="secondary">
+              {Temporal.Duration.from(recipe.cookTime).toLocaleString("en", {
+                minute: "numeric",
+                hour: "numeric",
+              })}
+            </Badge>
           )}
         </div>
       </div>
 
-      {/* Ingredients Section */}
-      <div className="p-6 rounded-lg shadow-sm">
-        <h2 className="text-xl font-semibold mb-4">Ingredients</h2>
-        <ul className="list-disc pl-6 space-y-2">
-          {(Array.isArray(recipe?.recipeIngredient)
-            ? recipe.recipeIngredient
-            : []
-          ).map(
-            (x, index) =>
-              typeof x === "string" && <li key={index}>{unescape(x)}</li>,
-          )}
-        </ul>
-      </div>
+      <RecipeIngredients recipeIngredient={recipe?.recipeIngredient} />
 
       {/* Instructions Section */}
       <div className="p-6 rounded-lg shadow-xs">

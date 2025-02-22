@@ -2,4 +2,5 @@
 
 interface CloudflareEnv {
 	__NEXT_ON_PAGES__KV_SUSPENSE_CACHE: KVNamespace;
+	RECIPE_CACHE: KVNamespace;
 }
