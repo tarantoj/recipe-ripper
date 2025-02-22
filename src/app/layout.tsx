@@ -26,7 +26,7 @@ const sourceCodePro = Source_Code_Pro({
 });
 
 export const metadata: Metadata = {
-  title: "Recipe Ripper",
+  title: { template: "%s | Recipe Ripper", default: "Recipe Ripper" },
   description: "",
 };
 

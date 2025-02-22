@@ -3,11 +3,37 @@ import { Badge } from "@/components/ui/badge";
 import { fetchRecipe } from "@/lib/fetch-recipe";
 import { notFound } from "next/navigation";
 import type { Recipe } from "schema-dts";
-import { Temporal } from "temporal-polyfill";
 import { unescape } from "@/lib/unescape";
 import { requestCache } from "@/lib/request-cache";
+import type { Metadata, ResolvingMetadata } from "next";
+import { TimeBadge } from "@/components/time-badge";
 
 export const runtime = "edge";
+
+export const generateMetadata = async ({
+  searchParams,
+}: {
+  searchParams: Promise<{
+    url: string;
+    text: string;
+    title: string;
+  }>;
+  parent: ResolvingMetadata;
+}): Promise<Metadata> => {
+  const { url, text, title } = await searchParams;
+
+  if (!url && !text && !title) return notFound();
+
+  const getRecipe = (key: string) => requestCache(() => fetchRecipe(key), key);
+
+  const recipe = await getRecipe(url ?? text ?? title);
+
+  return {
+    title: typeof recipe?.name === "string" ? recipe.name : undefined,
+    description:
+      typeof recipe?.description === "string" ? recipe.description : undefined,
+  };
+};
 
 const Recipe = async ({
   searchParams,
@@ -44,12 +70,7 @@ const Recipe = async ({
             </Badge>
           )}
           {recipe?.cookTime && typeof recipe.cookTime === "string" && (
-            <Badge variant="secondary">
-              {Temporal.Duration.from(recipe.cookTime).toLocaleString("en", {
-                minute: "numeric",
-                hour: "numeric",
-              })}
-            </Badge>
+            <TimeBadge time={recipe.cookTime} />
           )}
         </div>
       </div>
