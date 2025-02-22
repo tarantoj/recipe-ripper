@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import type { Recipe } from "schema-dts";
 import { unescape } from "@/lib/unescape";
 import { requestCache } from "@/lib/request-cache";
-import type { Metadata, ResolvingMetadata } from "next";
+import type { Metadata } from "next";
 import { TimeBadge } from "@/components/time-badge";
 
 export const runtime = "edge";
@@ -18,7 +18,6 @@ export const generateMetadata = async ({
     text: string;
     title: string;
   }>;
-  parent: ResolvingMetadata;
 }): Promise<Metadata> => {
   const { url, text, title } = await searchParams;
 
