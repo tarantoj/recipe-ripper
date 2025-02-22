@@ -21,6 +21,7 @@ export default function manifest(): MetadataRoute.Manifest {
       action: "/recipe",
       method: "GET",
       params: { url: "url", text: "text", title: "title" },
+      enctype: "application/x-www-form-urlencoded",
     },
   };
 }
