@@ -16,6 +16,12 @@ export default function manifest(): MetadataRoute.Manifest {
         sizes: "any",
         purpose: "monochrome",
       },
+      {
+        src: "/icon",
+        type: "image/png",
+        sizes: "256x256",
+        purpose: "monochrome",
+      },
     ],
     share_target: {
       action: "/recipe",
