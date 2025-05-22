@@ -26,7 +26,7 @@ export const requestCache = cache(
     };
 
     if (existing && existingMetadata?.expiry) {
-      if (existingMetadata.expiry > Date.now()) {
+      if (existingMetadata.expiry < Date.now()) {
         refresh();
       }
       return existing;
