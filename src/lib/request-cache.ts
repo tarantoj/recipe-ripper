@@ -12,6 +12,7 @@ const createKey = async (...params: unknown[]) => {
 
 export function kvCache<T extends unknown[], U>(
   fn: AsyncFunc<T, U>,
+  options: KVNamespacePutOptions = { expirationTtl: 60 * 60 },
 ): (...params: T) => Promise<U> {
   if (!fn.name) throw new TypeError("Function does not have a name");
   return async function (...params) {
@@ -28,7 +29,7 @@ export function kvCache<T extends unknown[], U>(
         getRequestContext().env.RECIPE_CACHE.put(
           key,
           JSON.stringify(actualResponse),
-          { expirationTtl: 60 * 60 },
+          options,
         ),
       );
 
