@@ -4,7 +4,7 @@ import { fetchRecipe } from "@/lib/fetch-recipe";
 import { notFound } from "next/navigation";
 import type { Recipe } from "schema-dts";
 import { unescape } from "@/lib/unescape";
-import { kvCache, requestCache } from "@/lib/request-cache";
+import { kvCache } from "@/lib/request-cache";
 import type { Metadata } from "next";
 import { TimeBadge } from "@/components/time-badge";
 import { cache } from "react";
