@@ -1,7 +1,8 @@
 import parse from "node-html-parser";
+import { cache } from "react";
 import type { Graph, Thing } from "schema-dts";
 
-export const fetchRecipe = async (url: string) => {
+export const fetchRecipe = cache(async (url: string) => {
   const res = await fetch(url);
   const html = await res.text();
 
@@ -16,4 +17,4 @@ export const fetchRecipe = async (url: string) => {
     .find(
       (x) => typeof x === "object" && "@type" in x && x["@type"] === "Recipe",
     );
-};
+});

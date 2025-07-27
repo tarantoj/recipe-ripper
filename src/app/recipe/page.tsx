@@ -4,12 +4,8 @@ import { fetchRecipe } from "@/lib/fetch-recipe";
 import { notFound } from "next/navigation";
 import type { Recipe } from "schema-dts";
 import { unescape } from "@/lib/unescape";
-import { kvCache } from "@/lib/request-cache";
 import type { Metadata } from "next";
 import { TimeBadge } from "@/components/time-badge";
-import { cache } from "react";
-
-export const runtime = "edge";
 
 export const generateMetadata = async ({
   searchParams,
@@ -24,7 +20,7 @@ export const generateMetadata = async ({
 
   if (!url && !text && !title) return notFound();
 
-  const recipe = await kvCache(fetchRecipe)(url ?? text ?? title);
+  const recipe = await fetchRecipe(url ?? text ?? title);
 
   return {
     title: typeof recipe?.name === "string" ? recipe.name : undefined,
@@ -46,7 +42,7 @@ const Recipe = async ({
 
   if (!url && !text && !title) return notFound();
 
-  const recipe = await cache(kvCache(fetchRecipe))(url ?? text ?? title);
+  const recipe = await fetchRecipe(url ?? text ?? title);
 
   if (!recipe) return notFound();
 
