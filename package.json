@@ -31,7 +31,7 @@
     "temporal-polyfill": "^0.3.0"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20250719.0",
+    "@cloudflare/workers-types": "^4.20250803.0",
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4.1.11",
     "@types/node": "^22",
@@ -39,7 +39,7 @@
     "@types/react-dom": "^19",
     "esbuild": "^0.25.8",
     "eslint": "^9",
-    "eslint-config-next": "15.4.2",
+    "eslint-config-next": "15.4.5",
     "eslint-config-prettier": "^10.1.8",
     "postcss": "^8",
     "prettier": "3.6.2",
@@ -47,6 +47,6 @@
     "schema-dts": "^1.1.5",
     "tailwindcss": "^4.0.4",
     "typescript": "^5",
-    "wrangler": "^4.26.0"
+    "wrangler": "^4.27.0"
   }
 }
